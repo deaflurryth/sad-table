@@ -1,0 +1,62 @@
+*
+::before,
+::after {
+    box-sizing: inherit;
+}
+:root {
+    box-sizing: border-box;
+}
+body{
+    margin:0 auto;
+}
+a {
+    text-decoration: none;
+}
+.header-container{
+    width: 100%;
+    min-height: 100vh;
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    
+    background-image: url('./../img/bg.jpg');
+    background-size:  cover;
+    font-family: 'Commissioner', sans-serif;
+}
+.podheader{
+    width: 100%;
+    min-height: 100vh;
+    margin-top: -100vh;
+    background-color: black;
+    opacity: .7;
+}
+.menu{
+    width: 100%;
+    min-height: 100vh;
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin-top: -100vh;
+    background-color: black;
+    opacity: .5;
+
+    list-style-type: none;
+    
+    
+}
+.page{
+    color: #ffffff;
+    min-height: 20vh;
+    font-size: 7vh;
+}
+.link{
+    color: #ffffff;
+    
+
+}

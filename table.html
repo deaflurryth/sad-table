@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+	<link href="https://upkg.com/filepond/dist/filepond.css" rel="stylesheet">
+	<meta http-equiv="content-type" content="text/html; charset=utf-8">    
+	<title>jQuery UI Sortable - перетаскивание элементов - Snipp.ru</title>
+	<title> Addbutton </title>
+	<style type="text/css">
+	html{font-family:sans-serif;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}body{margin:0}article,aside,details,figcaption,figure,footer,header,hgroup,main,nav,section,summary{display:block}audio,canvas,progress,video{display:inline-block;vertical-align:baseline}audio:not([controls]){display:none;height:0}[hidden],template{display:none}a{background:transparent}a:active,a:hover{outline:0}abbr[title]{border-bottom:1px dotted}b,strong{font-weight:700}dfn{font-style:italic}h1{font-size:2em;margin:.67em 0}mark{background:#ff0;color:#000}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sup{top:-.5em}sub{bottom:-.25em}img{border:0}svg:not(:root){overflow:hidden}figure{margin:1em 40px}hr{-moz-box-sizing:content-box;box-sizing:content-box;height:0}pre{overflow:auto}code,kbd,pre,samp{font-family:monospace,monospace;font-size:1em}button,input,optgroup,select,textarea{color:inherit;font:inherit;margin:0}button{overflow:visible}button,select{text-transform:none}button,html input[type="button"],input[type="reset"],input[type="submit"]{-webkit-appearance:button;cursor:pointer}button[disabled],html input[disabled]{cursor:default}button::-moz-focus-inner,input::-moz-focus-inner{border:0;padding:0}input{line-height:normal}input[type="checkbox"],input[type="radio"]{box-sizing:border-box;padding:0}input[type="number"]::-webkit-inner-spin-button,input[type="number"]::-webkit-outer-spin-button{height:auto}input[type="search"]{-webkit-appearance:textfield;-moz-box-sizing:content-box;-webkit-box-sizing:content-box;box-sizing:content-box}input[type="search"]::-webkit-search-cancel-button,input[type="search"]::-webkit-search-decoration{-webkit-appearance:none}fieldset{border:1px solid silver;margin:0 2px;padding:.35em .625em .75em}legend{border:0;padding:0}textarea{overflow:auto}optgroup{font-weight:700}table{border-collapse:collapse;border-spacing:0}td,th{padding:0}
+	body{
+		margin: 0;
+		padding: 0;	
+		text-align: left;
+	}
+	</style>
+</head>
+<body style="font-size: 14px; position: relative; padding: 15px 20px;">
+<table class="sortabletable">
+	<form acation="">
+			<select name= "proof" id="">
+				<option value="⭐">⭐</option>
+				<option value="⭐⭐">⭐⭐</option>
+				<option value="⭐⭐⭐">⭐⭐⭐</option>
+				<option value="⭐⭐⭐⭐">⭐⭐⭐⭐</option>		
+				<option value="⭐⭐⭐⭐⭐">⭐⭐⭐⭐⭐</option>
+			</select>
+		<input type = "text" id="EXinput"  size="10"  placeholder="Task">
+		<input type = "text" id="EXinput"  size="10"  placeholder="Performer">
+		<input type = "date" name="dto"  id ="date_timepicker_end"  required pattern="\d{4}-\d{2}-\d{2}" size="8">
+			<select name= "proof2" id="">
+				<option value="In progress">In progress</option>
+				<option value="Done">Done</option>
+				<option value="Not started">Not started</option>
+			</select>
+		<input type="submit" value="Add"/>
+	<div>
+	</div>
+	</form>
+	<thead>
+		<tr>
+			<th>Priority</th>
+			<th>Task</th>
+			<th>Performer</th>
+			<th>Deadline</th>
+			<th>Process</th>
+			<th>Action</th>
+		</tr>
+	<tbody>
+		<tr>
+		</tr>
+	</thead>
+	</tbody>
+</table>
+<style type="text/css">
+body {
+	font-size:14px;
+	padding: 15px 20px;
+}
+.sortabletable {
+	margin: 20px auto;
+	width: 700px;
+	border: 1px solid #ddd;
+	border-collapse: collapse; 
+}
+.sortabletable td {
+	padding: 20px;
+	border: 1px solid #ddd;
+	background: #fff;
+	cursor: move;
+}
+.sortabletable th {
+	padding: 20px;
+	border: 1px solid #ddd;
+	background: #efefef;
+	font-weight: bold;
+}
+</style>
+
+<script src="https://snipp.ru/cdn/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://snipp.ru/cdn/jqueryui/1.12.1/jquery-ui.min.js"></script>
+<script src="https://upkg.com/filepond/dist/filepond.css"></script>
+<script type="text/javascript">
+	$( ".selector" ).datepicker({
+	dateFormat: "dd-mm-yy"
+	});
+	var dateFormat = $( ".selector" ).datepicker( "option", "dateFormat" );
+	$( ".selector" ).datepicker( "option", "dateFormat", "yy-mm-dd" );
+	var fixHelper = function(e, ui) {
+		ui.children().each(function() {
+			$(this).width($(this).width());
+	});
+	return ui;
+};
+$('.sortabletable tbody').sortable({
+	helper: fixHelper
+});
+function formthead(selector){
+	var sortabletable = document.querySelector(selector);
+	var form = sortabletable.getElementsByTagName("form")[0];
+	var thead = sortabletable.getElementsByTagName("thead")[0];
+  
+form.onsubmit = function(ev){
+ev = ev || event;
+ev.preventDefault();
+    
+var tr = document.createElement("tr"), td;
+    
+	for(let i = 0; i < 5; i++){
+      td = document.createElement("td");
+      td.innerHTML = this.elements[i].value;
+      tr.appendChild(td);
+    }    
+    sortabletable.appendChild(tr);    
+  }  
+}
+formthead(".sortabletable");
+$('document').ready(function() {
+        $("td").click(function (){
+            var selectId= document.getElementsByName('sortabletable').value
+
+            alert('already clicked '+selectId);});
+            $(this).closest("tr").remove();
+    });
+</script>
+</body>
+</html>
